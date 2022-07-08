@@ -36,7 +36,6 @@ def updateBits(m, n, j, i):
     return n_cleared | m_shifted
 
 
-
 m = 19
 n = 1024
 i = 2
