@@ -36,10 +36,6 @@ def updateBits(m, n, j, i):
     return n_cleared | m_shifted
 
 
-def test():
-    pass 
-
-
 
 m = 19
 n = 1024
