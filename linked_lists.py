@@ -149,6 +149,28 @@ class LinkedList:
                 return
             current = current.next
 
+    # 9a. Insert a node in a sorted list:
+
+    def insert_in_sorted(self, data):
+
+        new_node = Node(data)
+        current = self.head
+
+        # if head is None or head.data is less than a new node data
+
+        if current is None or current.data < new_node.data:
+            new_node.next = current
+            current = new_node
+            return
+
+        # traverse the list but stop at current next in order to catch
+        # the correct current that would be previos
+        while current.next and current.next.data < new_node.data:
+            current = current.next
+
+        new_node.next = current.next
+        current.next = new_node
+
 
     # 10. remove data by index
 
@@ -253,6 +275,24 @@ def mergeLists(head1, head2):
         head2.next = mergeLists(head1, head2.next)
         return head2
 
+# 14. Insert in a sorted list using dummy:
+
+def insert_in_sorted_using_dummy(head, data):
+    dummy = LinkedList()
+    current = dummy
+    new_node = Node(data)
+
+    # Assigning a head to the dummy
+    dummy.next = head
+
+    while current.next and current.next.data < new_node.data:
+        current = current.next
+
+    new_node.next = current.next
+    current.next = new_node
+
+    return dummy.next
+
 
 
 
@@ -268,6 +308,11 @@ L.push(1)
 L.push(2)
 L.push(3)
 L.push(4)
+L.head = insert_in_sorted_using_dummy(L.head, 4)
+L.display()
+L.insert_in_sorted(4)
+L.display()
+
 L.push("apple")
 L.display()
 #L.insert_after_value("apple", 102)
