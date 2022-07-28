@@ -43,7 +43,7 @@ class LinkedList:
         self.head = new_node
 
 
-    #4. Append data to the end of the list
+    #4.a Append data to the end of the list
     def append(self, data):
 
         if self.head is None:
@@ -55,9 +55,21 @@ class LinkedList:
         #traverse the list
         while current.next:
             current = current.next
-
-
         current.next = new_node
+
+    # 4.b. Convert an array to a linked list, same as append but put in a loop 
+    def arrayToList(self, arr):
+        
+        for i in range(len(arr)):
+            if self.head is None:
+                self.head = Node(arr[i])
+
+            new_node = Node(arr[i])
+            current = self.head
+            # traverse the list
+            while current.next:
+                current = current.next
+            current.next = new_node
 
     #5.  display data
     def display(self):
