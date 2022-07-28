@@ -195,6 +195,63 @@ class LinkedList:
 
             previous = current
             current = current.next
+    
+    # 12 Merge two sorted lists through the recursion
+
+        def mergeTwoLists(self, list1, list2):
+            # creating an empty node that is stable at the beginning 
+            dummy = Node()
+            # creating a node for traversal 
+            current = dummy 
+            
+            while list1 and list2: 
+                
+                if list1.data < list2.data:
+                    current.next = list1
+                    list1 = list1.next 
+                else:
+                    current.next = list2
+                    list2 = list2.next 
+                    
+                current = current.next
+            
+            # Make sure to atach remaining elements if one of the lists is still not empty
+            if list1: 
+                current.next = list1
+            elif list2:
+                current.next = list2
+                
+            return dummy.next
+
+
+# 13 Merge two sorted lists. Recursion 
+
+# Function to merge two sorted linked list.
+def mergeLists(head1, head2):
+
+    # List1 is empty then return List2
+    if head1 is None:
+        return head2
+
+    # if List2 is empty then return List1
+    if head2 is None:
+        return head1
+
+    # If List1's data is smaller or
+    # equal to List2's data
+    if head1.data <= head2.data:
+
+        # Again check List1's data is smaller or equal List2's
+        # data and call mergeLists function.
+        head1.next = mergeLists(head1.next, head2)
+        return head1
+        
+    else:
+  
+        # Again check List2's data is greater or equal List's
+        # data and call mergeLists function.
+        head2.next = mergeLists(head1, head2.next)
+        return head2
 
 
 
